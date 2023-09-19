@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,11 +18,13 @@ namespace Calculator
         {
             double result = 0;
             Console.WriteLine("Vitej v kalkulacce");
-            Console.WriteLine("Zadej prvni (cele) cislo");
-            int a = Convert.ToInt32(Console.ReadLine());
-            Console.WriteLine("Zadej druhe (cele) cislo");
-            int b = Convert.ToInt32(Console.ReadLine());
-            Console.WriteLine("Zadej nazev operace (soucet, rozdil, soucin, podil, ^)");
+            
+            Console.WriteLine("Zadej prvni cislo");
+            double a = Convert.ToDouble(Console.ReadLine());
+            Console.WriteLine("Zadej druhe cislo");
+            double b = Convert.ToDouble(Console.ReadLine());
+            
+            Console.WriteLine("Zadej nazev operace (soucet, rozdil, soucin, podil, ^, odmocnina, log)");
             string operace = Console.ReadLine();
             switch (operace)
             {
@@ -45,7 +48,16 @@ namespace Calculator
                     result = Math.Pow(a, b);
                     Console.WriteLine(result);
                     break;
-              
+                case "odmocnina":
+                    result = Math.Pow(a, 1/b);
+                    Console.WriteLine(result);
+                    break;
+                case "log":
+                    result = Math.Log(b, a);
+                    Console.WriteLine(result);
+                    break;
+                
+
             }
 
             {
