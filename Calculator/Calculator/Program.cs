@@ -15,6 +15,44 @@ namespace Calculator
     {
         static void Main(string[] args)
         {
+            double result = 0;
+            Console.WriteLine("Vitej v kalkulacce");
+            Console.WriteLine("Zadej prvni (cele) cislo");
+            int a = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("Zadej druhe (cele) cislo");
+            int b = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("Zadej nazev operace (soucet, rozdil, soucin, podil, ^)");
+            string operace = Console.ReadLine();
+            switch (operace)
+            {
+                case "soucet":
+                    result = a + b;
+                    Console.WriteLine(result);
+                    break;
+                case "rozdil":
+                    result = a - b;
+                    Console.WriteLine(result);
+                    break;
+                case "soucin":
+                    result = a * b;
+                    Console.WriteLine(result);
+                    break;
+                case "podil":
+                    result = a / b;
+                    Console.WriteLine(result);
+                    break;
+                case "^":
+                    result = Math.Pow(a, b);
+                    Console.WriteLine(result);
+                    break;
+              
+            }
+
+            {
+                
+            }
+            
+
             /*
              * Pokud se budes chtit na neco zeptat a zrovna budu pomahat jinde, zkus se zeptat ChatGPT ;) - https://chat.openai.com/
              * 
