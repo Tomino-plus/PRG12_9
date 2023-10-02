@@ -23,44 +23,45 @@ namespace Calculator
             double a = Convert.ToDouble(Console.ReadLine());
             Console.WriteLine("Zadej druhe cislo");
             double b = Convert.ToDouble(Console.ReadLine());
-            
             Console.WriteLine("Zadej nazev operace (soucet, rozdil, soucin, podil, ^, odmocnina, log)");
+            
             string operace = Console.ReadLine();
+
+            
             switch (operace)
-            {
-                case "soucet":
-                    result = a + b;
-                    Console.WriteLine(result);
-                    break;
-                case "rozdil":
-                    result = a - b;
-                    Console.WriteLine(result);
-                    break;
-                case "soucin":
-                    result = a * b;
-                    Console.WriteLine(result);
-                    break;
-                case "podil":
-                    result = a / b;
-                    Console.WriteLine(result);
-                    break;
-                case "^":
-                    result = Math.Pow(a, b);
-                    Console.WriteLine(result);
-                    break;
-                case "odmocnina":
-                    result = Math.Pow(a, 1/b);
-                    Console.WriteLine(result);
-                    break;
-                case "log":
-                    result = Math.Log(b, a);
-                    Console.WriteLine(result);
-                    break;
-                
+                {
+                    case "soucet":
+                        result = a + b;
+                        Console.WriteLine(result);
+                        break;
+                    case "rozdil":
+                        result = a - b;
+                        Console.WriteLine(result);
+                        break;
+                    case "soucin":
+                        result = a * b;
+                        Console.WriteLine(result);
+                        break;
+                    case "podil":
+                        result = a / b;
+                        Console.WriteLine(result);
+                        break;
+                    case "^":
+                        result = Math.Pow(a, b);
+                        Console.WriteLine(result);
+                        break;
+                    case "odmocnina":
+                        result = Math.Pow(a, 1 / b);
+                        Console.WriteLine(result);
+                        break;
+                    case "log":
+                        result = Math.Log(b, a);
+                        Console.WriteLine(result);
+                        break;
 
-            }
+            
 
-            {
+            
                 
             }
             
