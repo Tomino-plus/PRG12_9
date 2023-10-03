@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -17,32 +18,35 @@ namespace Calculator
         static void Main(string[] args)
         {
             double result = 0;
-            Console.WriteLine("Vitej v kalkulacce");
+            Console.WriteLine("Program kalkulacka\n moc toho neumi, ale snad to bude stacit\n");
+            Console.WriteLine("Vysvetleni nekterych operaci:\n '^' je mocneni(prvni cislo je zaklad, druhe je vyse mocniny)\n sqrt je odmocneni (prvni cislo je odmocnenec, druhe je odmocnitel)\n sqrt je odmocneni (prvni cislo je odmocnenec, druhe je odmocnitel)\n log je logaritmus\n");
             
+
             Console.WriteLine("Zadej prvni cislo");
             double a = Convert.ToDouble(Console.ReadLine());
             Console.WriteLine("Zadej druhe cislo");
             double b = Convert.ToDouble(Console.ReadLine());
-            Console.WriteLine("Zadej nazev operace (soucet, rozdil, soucin, podil, ^, odmocnina, log)");
+            Console.WriteLine("Zadej nazev operace (+, -, *, /, ^, sqrt, log)");
+
             
             string operace = Console.ReadLine();
 
             
             switch (operace)
                 {
-                    case "soucet":
+                    case "+":
                         result = a + b;
                         Console.WriteLine(result);
                         break;
-                    case "rozdil":
+                    case "-":
                         result = a - b;
                         Console.WriteLine(result);
                         break;
-                    case "soucin":
+                    case "*":
                         result = a * b;
                         Console.WriteLine(result);
                         break;
-                    case "podil":
+                    case "/":
                         result = a / b;
                         Console.WriteLine(result);
                         break;
@@ -50,7 +54,7 @@ namespace Calculator
                         result = Math.Pow(a, b);
                         Console.WriteLine(result);
                         break;
-                    case "odmocnina":
+                    case "sqrt":
                         result = Math.Pow(a, 1 / b);
                         Console.WriteLine(result);
                         break;
