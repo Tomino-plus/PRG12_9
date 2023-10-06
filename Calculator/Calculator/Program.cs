@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 /*
  * Made by Jan Borecky for PRG seminar at Gymnazium Voderadska, year 2023-2024.
  * Extended by students.
+ * Pri psani kodu bylo vyuzito ChatGPT pro objasneni nekterych funkci (syntax, vyuziti, logika). Dalsi poznamky ke kodu primo u konkretnich funkci.
  */
 
 namespace Calculator
@@ -18,83 +19,74 @@ namespace Calculator
         static void Main(string[] args)
         {
             double result = 0;
-            Console.WriteLine("Program kalkulacka\n moc toho neumi, ale snad to bude stacit\n");
-            Console.WriteLine("Vysvetleni nekterych operaci:\n '^' je mocneni(prvni cislo je zaklad, druhe je vyse mocniny)\n sqrt je odmocneni (prvni cislo je odmocnenec, druhe je odmocnitel)\n sqrt je odmocneni (prvni cislo je odmocnenec, druhe je odmocnitel)\n log je logaritmus\n");
-            
-
-            Console.WriteLine("Zadej prvni cislo");
-            double a = Convert.ToDouble(Console.ReadLine());
-            Console.WriteLine("Zadej druhe cislo");
-            double b = Convert.ToDouble(Console.ReadLine());
-            Console.WriteLine("Zadej nazev operace (+, -, *, /, ^, sqrt, log)");
-
-            
-            string operace = Console.ReadLine();
-
-            
-            switch (operace)
+            double a;
+            double b;
+            string prevody; //string potrebny pro prevody mezi soustavami (navod od ChatGPT), viz poznamky radku 70 a 71
+            string operace;
+            bool platnost = true; //vyuziti a syntax "bool" mi objasnilo ChatGPT
+            Console.WriteLine("Program Kalkulacka\n moc toho neumi, ale snad to bude stacit :)\n"); //uvodni text je pred cyklem, protoze uvod staci precist proste jenom jednou :)
+            while (platnost)
+            {
+                Console.WriteLine("Vysvetleni nekterych operaci:\n '^' je mocneni kde [prvni cislo] je mocnenec, [druhe cislo] je mocnitel\n 'sqrt' je odmocneni kde [prvni cislo] je odmocnenec, [druhe cislo] je odmocnitel)\n 'log' je logaritmus kde [prvni cislo] je zaklad\n 'soustavy' je prevod [prvni cislo] (v desitkove soustave) do soustavy [druhe cislo] (funguje pro soustavy 2, 8, 10, 16)\n");
+                Console.WriteLine("Zadej prvni cislo");
+                while (!double.TryParse(Console.ReadLine(), out a)) //overi, zda je mozne prevest zadany vyraz (cislo a) na double, pokud ne, znovu se zepta na novou hodnotu
                 {
-                    case "+":
-                        result = a + b;
-                        Console.WriteLine(result);
-                        break;
-                    case "-":
-                        result = a - b;
-                        Console.WriteLine(result);
-                        break;
-                    case "*":
-                        result = a * b;
-                        Console.WriteLine(result);
-                        break;
-                    case "/":
-                        result = a / b;
-                        Console.WriteLine(result);
-                        break;
-                    case "^":
-                        result = Math.Pow(a, b);
-                        Console.WriteLine(result);
-                        break;
-                    case "sqrt":
-                        result = Math.Pow(a, 1 / b);
-                        Console.WriteLine(result);
-                        break;
-                    case "log":
-                        result = Math.Log(b, a);
-                        Console.WriteLine(result);
-                        break;
+                    Console.WriteLine("Spatny input");
+                }
+                Console.WriteLine("Zadej druhe cislo");
+                while (!double.TryParse(Console.ReadLine(), out b)) //overi, zda je mozne prevest zadany vyraz (cislo b) na double, pokud ne, znovu se zepta na novou hodnotu
+                {
+                    Console.WriteLine("Spatny input");
+                }
+                Console.WriteLine("Zadej nazev operace (+, -, *, /, ^, sqrt, log, soustavy)");
+                while (platnost)
+                {
+                    operace = Console.ReadLine();
+                    platnost = false; //po zadani platne operace "vypne" cyklus, aby program pokracoval, jinak znovu spusti cyklus a vyzada novy input operace (default)
+                    switch (operace)
+                    {
+                        case "+":
+                            result = a + b;
+                            break;
+                        case "-":
+                            result = a - b;
+                            break;
+                        case "*":
+                            result = a * b;
+                            break;
+                        case "/":
+                            result = a / b;
+                            break;
+                        case "^":
+                            result = Math.Pow(a, b);
+                            break;
+                        case "sqrt":
+                            result = Math.Pow(a, 1 / b);
+                            break;
+                        case "log":
+                            result = Math.Log(b, a);
+                            break;
+                        case "soustavy":
+                            prevody = Convert.ToString(Convert.ToInt32(Math.Floor(a)), Convert.ToInt32(Math.Floor(b))); //ChatGPT poradil tuto funkci pro prevody soustav: Convert.ToString (Int a, Int b). Funkce Math.Floor zaroven eliminuje desetinna mista v zadanych hodnotach (vrati dolni celou cast). 
+                            result = int.Parse(prevody); //prevod funguje pro soustavy: 2, 8, 16 (a 10). Vypracovano ve spolupraci s Matousem Jindrichem.
+                            break;
+                        default:
+                            Console.WriteLine("Neplatny nazev operace"); //neplatny nazev operace spusti cyklus znovu a vyzada novy input operace
+                            platnost = true;
+                            break;
+                    }
+                }
+                Console.WriteLine(result);
+                Console.WriteLine("napis 'konec' pro ukonceni nebo stiskni ENTER pro dalsi pocitani");
+                if (!(Console.ReadLine() == "konec")) //pokud input neni "konec", vrati bool "platnost" na true a tim spusti znovu cely cyklus
+                {
+                    platnost = true;
+                }
+                Console.Clear(); //vymaze cely text pro prehlednost pri dalsim pocitani (vetsina textu se objevi znovu po spusteni, takze ve finale zmizi jenom uvod mimo cyklus)
 
-            
-
-            
-                
             }
-            
-
-            /*
-             * Pokud se budes chtit na neco zeptat a zrovna budu pomahat jinde, zkus se zeptat ChatGPT ;) - https://chat.openai.com/
-             * 
-             * ZADANI
-             * Vytvor program ktery bude fungovat jako kalkulacka. Kroky programu budou nasledujici:
-             * 1) Nacte vstup pro prvni cislo od uzivatele (vyuzijte metodu Console.ReadLine() - https://learn.microsoft.com/en-us/dotnet/api/system.console.readline?view=netframework-4.8.
-             * 2) Zkonvertuje vstup od uzivatele ze stringu do integeru - https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/types/how-to-convert-a-string-to-a-number.
-             * 3) Nacte vstup pro druhe cislo od uzivatele a zkonvertuje ho do integeru. (zopakovani kroku 1 a 2 pro druhe cislo)
-             * 4) Nacte vstup pro ciselnou operaci. Rozmysli si, jak operace nazves. Muze to byt "soucet", "rozdil" atd. nebo napr "+", "-", nebo jakkoliv jinak.
-             * 5) Nadefinuj integerovou promennou result a prirad ji prozatimne hodnotu 0.
-             * 6) Vytvor podminky (if statement), podle kterych urcis, co se bude s cisly dit podle zadane operace
-             *    a proved danou operaci - https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/selection-statements.
-             * 7) Vypis promennou result do konzole
-             * 
-             * Mozna rozsireni programu pro rychliky / na doma (na poradi nezalezi):
-             * 1) Vypis do konzole pred nactenim kazdeho uzivatelova vstupu co po nem chces
-             * 2) a) Kontroluj, ze uzivatel do vstupu zadal, co mel (cisla, popr. ciselnou operaci). Pokud zadal neco jineho, napis mu, co ma priste zadat a program ukoncete.
-             * 2) b) To same, co a) ale misto ukonceni programu opakovane cti vstup, dokud uzivatel nezada to, co ma
-             *       - https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/iteration-statements#the-while-statement
-             * 3) Umozni uzivateli zadavat i desetinna cisla, tedy prekopej kalkulacku tak, aby umela pracovat s floaty
-             */
-
-            //Tento komentar smaz a misto nej zacni psat svuj prdacky kod.
-
-            Console.ReadKey(); //Toto nech jako posledni radek, aby se program neukoncil ihned, ale cekal na stisk klavesy od uzivatele.
+          
+            Console.ReadKey();
         }
     }
 }
