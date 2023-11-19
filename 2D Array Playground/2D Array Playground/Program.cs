@@ -46,9 +46,9 @@ namespace _2D_Array_Playground
             int yFirst = 0;
             int xSecond = 1;
             int ySecond = 1;
-            //int first = array[xFirst, yFirst];
-            //int second = array[xSecond, ySecond];
-            /*int temp = array[xFirst, yFirst];
+            int first = array[xFirst, yFirst];
+            int second = array[xSecond, ySecond];
+            int temp = array[xFirst, yFirst];
             array[xFirst, yFirst] = array[xSecond, ySecond];
             array[xSecond, ySecond] = temp;
 
@@ -61,7 +61,7 @@ namespace _2D_Array_Playground
                 }
             }
             Console.WriteLine("\n");
-            */
+            
             /*TODO 5: Prohoď n-tý řádek v poli s m-tým řádkem (n je dáno proměnnou nRowSwap, m mRowSwap) a vypiš celé pole do konzole po prohození.
             
             int nRowSwap = 0;
