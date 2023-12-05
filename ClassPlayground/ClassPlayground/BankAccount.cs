@@ -12,8 +12,8 @@ namespace ClassPlayground
         public string holderName, currency;
         public double Deposit()
         {
-            int deposit = 2;
-            return balance += deposit;
+            
+            
         }
 
     }

@@ -27,12 +27,14 @@ namespace ClassPlayground
 {
     internal class Program
     {
-        
+
         static void Main(string[] args)
         {
             Rectangle rect1 = new Rectangle(5, 7);
-            Console.WriteLine("")
-            
+            Console.WriteLine($"Obsah obdélníku je " + rect1.CalculateArea() + " poměr stran je " + rect1.CalculateAspectRatio() + "a jeho vlastností je ");
+            rect1.FindRectType();
+
+            Console.WriteLine($"");
 
             Console.ReadKey();
         }

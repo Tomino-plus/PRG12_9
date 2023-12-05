@@ -8,8 +8,8 @@ namespace ClassPlayground
 {
     public class Rectangle
     {
-        public int width, height;
-        public Rectangle(int width, int height)
+        public double width, height;
+        public Rectangle(double width, double height)
         {
             this.width = width;
             this.height = height;
@@ -20,22 +20,26 @@ namespace ClassPlayground
         }
         public double CalculateAspectRatio()
         {
-            if (width == height)
-            {
-                Console.WriteLine("čtverec");
-            }
-            else if (width > height)
-            {
-                Console.WriteLine("široký");
-            }
-            else
-            {
-                Console.WriteLine("vysoký");
-            }
             return width / height;
             
         }
-        public bool ContainsPoint()
+        public void FindRectType()
+        {
+            if (width == height)
+            {
+                Console.Write("čtverec");
+            }
+            else if (width > height)
+            {
+                Console.Write("široký");
+            }
+            else
+            {
+                Console.Write("vysoký");
+            }
+            
+        }
+        /*public bool ContainsPoint()
         {
             int x = 2;
             int y = 2;
@@ -45,6 +49,6 @@ namespace ClassPlayground
             else
             return false;
         }
-        
+        */
     }
 }
