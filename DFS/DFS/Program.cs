@@ -61,6 +61,7 @@ namespace DFS
             List<int> pathToTargetNode = new List<int>();
 
             Node currentNode = graph.root; // We start in root and we want to find a path from root to the target node
+            Console.WriteLine(currentNode.index);
 
             
             /*
